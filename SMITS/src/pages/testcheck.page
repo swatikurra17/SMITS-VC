@@ -1,0 +1,12 @@
+<apex:page controller="newctrl">
+<apex:form >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>sf</h1>
+                                      <apex:inputCheckbox value="{!username}" id="fgjdfj">
+                                <apex:actionSupport event="onchange" action="{!addtoFinal}" >
+                               <!-- <apex:param value="{!iService.Id}" name="serviceId"/>-->
+                                </apex:actionSupport>
+                                </apex:inputCheckbox>
+                                </apex:form>
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,255 @@
+<apex:page sidebar="false" controller="testpopup">
+
+<head>
+  <title>SSRF Search Popup</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <apex:stylesheet value="{!URLFOR($Resource.popup,'CSS/popup.css')}"/>
+  <style>
+
+   .popupBackground {
+        /* Background color */
+        background-color:black;
+        opacity: 0.20;
+        filter: alpha(opacity = 20);
+    
+        /* Dimensions */
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 998;
+        position: absolute;
+        
+        /* Mouse */
+        cursor:wait;
+    }
+ 
+    /* This is for the message DIV */
+    .PopupPanel {
+        /* Background color */
+        border: solid 2px orange;
+        background-color: white;
+ 
+        /* Dimensions */
+        left: 50%;
+        width: 200px;
+        margin-left: -100px;
+        top: 50%;
+        height: 50px;
+        margin-top: -25px;
+        z-index: 9999;
+        position: absolute;
+        
+        /* Mouse */
+        cursor:pointer;
+    }
+</style>
+</head>
+<body>
+<apex:form >
+<apex:actionStatus id="actSt" startStyle="top: 50%;left: 50%;z-index: 9999;" >      
+                        <apex:facet name="start">
+                            <div>
+                                <div />
+                                <div class="PopupPanel">
+                                    <table border="0" width="100%" height="100%">
+                                        <tr>
+                                            <td align="center"><b>Please Wait</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center"><img src="/img/loading.gif"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                          </div>
+                         </apex:facet>
+                         
+                        <apex:facet name="stop"></apex:facet>
+        </apex:actionStatus> 
+<div class="container">
+  <p>SSRF Services Modal</p>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Salesselect">Modal button</button>
+
+  <!-- Modal -->
+  <div class="modal fade selectservices" id="Salesselect" role="dialog">
+    <div class="modal-dialog ">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Seacrh By Suppliers</h4>
+        </div>
+        <div class="modal-body">
+          <h4 class="Arrow-headings"> <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Select Suppliers</h4>
+        
+        <!-- Dropdown and search boxes -->
+        <div class="row marginTop1">
+        <div class="dropdown col-xs-6 col-sm-6 col-md-4 col-lg-4">
+           <apex:actionFunction name="supplierInforamtion" action="{!supplierInfo}" reRender="supp,panel2,itext" status="actStatusId5"/>
+           
+           <apex:selectList id="slist" onchange="supplierInforamtion();" multiselect="false" size="1" value="{!selectedSupplier}" style="height: 39px;width: 80%;color:#186964" >
+                <apex:selectOptions value="{!supplierOptions}" />
+           </apex:selectList>  
+           <apex:actionStatus id="actStatusId5">
+                <apex:facet name="start" >
+                    <img src="/img/loading.gif"/>                    
+                </apex:facet>
+            </apex:actionStatus>
+        </div>
+        <div class="input-group add-on col-xs-6 col-sm-6 col-lg-offset-4 col-md-4 col-lg-4">
+          <apex:inputText id="itext" value="{!searchStr}" styleClass="form-control"  html-placeholder="Search Text Here" style="width: 215px;height: 40px;"/>
+         <!-- <div class="input-group-btn">-->
+               <apex:commandButton styleClass="btn btn-outline-primary" style="height:39px;" value="Search" action="{!search}" reRender="supp,panel2,panel3,slist" status="actStatusId6" >
+               </apex:commandButton>
+          <!--</div>-->
+          <apex:actionStatus id="actStatusId6">
+                <apex:facet name="start" >
+                    <img src="/img/loading.gif"/>                    
+                </apex:facet>
+          </apex:actionStatus>
+        </div>
+      </div>
+        <!--End Dropdown and search boxes -->
+        <!-- Table section1 -->
+        
+
+             <apex:outputPanel id="supp" >
+             <apex:outputPanel rendered="{!supplierInfo!=null || supplierinfo1!=null}">
+             <h4 class="Arrow-headings marginTop2"> <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Please Select all that apply</h4>
+               <div class="sales-title row">
+                  <div class="row">
+                          <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">Select</div>
+                          <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service</div>
+                          <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                          <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+                   </div>
+                </div>
+                
+                
+                 <apex:repeat value="{!supplierInfo_wrapper}" var="sService">
+                    <div class="Table-Content">
+                    <!-- ROW1-->
+                    
+                    <div class="row sales-element">
+                      <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                        <apex:selectRadio value="{!SelectedSupplierByRadio}">
+                        <apex:selectOptions value="{!supplierOptions1}"/>
+                            <apex:actionSupport event="onchange" action="{!servicesProvidedBySupplier}" rerender="panel2" status="actSt"/>  
+                        </apex:selectRadio> 
+                      </div>
+                      <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Name}"></apex:outputLabel> </div>
+                      <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Supplier_Name__c}"></apex:outputLabel></div>
+                      <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Supplier_Type__r.name}"></apex:outputLabel></div>
+                     </div>
+                    </div>
+             
+                  </apex:repeat>   
+               </apex:outputPanel> 
+              </apex:outputPanel>           
+                    
+        <!-- Endd Table section1 -->
+
+
+                <!-- Table section2 -->
+        
+               <apex:outputPanel id="panel2">
+               <apex:outputPanel rendered="{!supplier_serviceWrapper!=null}">
+               <h4 class="Arrow-headings marginTop2"> <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Please Select all that apply</h4>
+                    <div class="sales-title row">
+                    <div class="row">
+                      <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">Select</div>
+                      <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service</div>
+                      <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                      <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+                    </div>
+                    </div>
+                  
+                   <apex:repeat id="Idrep10" value="{!supplier_serviceWrapper}" var="sServ">
+                    <div class="Table-Content">
+                    <!-- ROW1-->
+                    <div class="row sales-element">
+                      <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                          <label class="form-check-label">
+                           <apex:inputCheckbox value="{!sServ.selected}" >
+                            <apex:actionSupport event="onclick" action="{!selectedServices}" reRender="panel3" status="actSt">
+                             <apex:param id="parm1" name="parm1" value="{!sServ.index}" />
+                            </apex:actionSupport>
+                           </apex:inputCheckbox>
+                           </label>
+                      </div>
+                      <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2"><apex:outputLabel style="font-weight:100;" value="{!sServ.con.Name}"></apex:outputLabel></div>
+                      <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!sServ.con.Service_Name__r.Name}"></apex:outputLabel></div>
+                      <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!sServ.con.Supplier_Name__r.Name}"></apex:outputLabel></div>
+                    </div>
+                    
+                    </div>
+                  </apex:repeat>
+                  
+                  </apex:outputPanel>
+                  </apex:outputPanel>
+               <!--</apex:outputPanel>  -->
+        <!-- Endd Table section2 -->
+
+         <!-- Table section3 -->
+        
+               <apex:outputPanel id="panel3">
+               <apex:outputPanel id="panel3child" rendered="{!supplier_serviceWrapper!= null}" >
+               <h4 class="Arrow-headings marginTop2"> <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Selected Services</h4>
+               <!--<script>alert("{!objSelectedServiceId}");</script>-->
+                    <div class="sales-title row">
+                    <div class="row">
+                      <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">Select</div>
+                      <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service</div>
+                      <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                      <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+                    </div>
+                    </div>
+                    
+                  <!--<apex:variable var="cnt" value="{!0}" /> -->
+                  <apex:repeat value="{!supplier_serviceWrapper}" var="sfinal">
+                   <apex:outputPanel rendered="{!sfinal.selected}">
+                    <div class="Table-Content">
+                    <!-- ROW1-->
+                     <div class="row sales-element" rendered="{!sfinal.selected}">
+                      <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                          <label class="form-check-label">
+                                <apex:commandLink style="text-decoration: none; color:#69c;" action="{!removeService}" status="actSt" reRender="panel2,panel3,panel3child">Remove
+                                        <apex:param value="{!sfinal.index}" name="Index"/>
+                                 </apex:commandLink>
+                           </label>     
+                      </div>
+                      <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                      <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                      <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                    </div>
+                    
+                    </div>
+                   <!-- <apex:variable var="cnt" value="{!cnt+1}" />-->
+                </apex:outputPanel>             
+                  </apex:repeat>  
+               </apex:outputPanel> 
+               </apex:outputPanel>  
+               <apex:commandButton styleClass="btn btn-outline-primary" style="height:39px;" value="Done" >
+               </apex:commandButton>
+             <!-- Endd Table section3 -->    
+       <!--  </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+</div>
+</apex:form>
+</body>
+
+</apex:page>

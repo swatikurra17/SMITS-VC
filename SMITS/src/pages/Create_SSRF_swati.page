@@ -1,0 +1,595 @@
+<apex:page controller="ssrfControllerswati" showheader="false" sidebar="false">
+    <!-- Begin Default Content REMOVE THIS -->
+    <title>Your Information</title>
+    <meta charset="UTF-8"></meta>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script></script>
+    <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <apex:stylesheet value="{!URLFOR($Resource.HOMEpage,'SMITs/CustomStyleSheet.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.popup,'CSS/popup.css')}"/>
+    <script>
+        j$ = jQuery.noConflict();
+
+        function closeModal(){
+            j$('#Salesselect').modal('hide');
+        };
+    </script>
+    
+    <body>
+        <apex:form >
+            <!--Top Lilly header-->
+            <nav class="navbar navbar-default header_color">
+                <div class="container-fluid">
+                    <div class="row header_lilly">
+                        <div class="col-xs-3 col-sm-3">
+                            <a class="header-logo" href="#">
+                                <a href="/apex/homepage"><apex:image url="{!URLFOR($Resource.HOMEpage, 'SMITs/images/lillylogo.png')}" /></a>
+                            </a>
+                        </div>
+                        <div class="col-xs-9 col-sm-9">
+                            <span class="header_text">Supplier Management Integrated Tracking System</span>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="container wrapper">
+                <!--Burger Menu for Mobile-->
+                <nav class="navbar navbar-default mobile_menu">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed color_menu" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SSRF <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Create SSRF</a></li>
+                                        <li><a href="#">View my task</a></li>
+                                        <li><a href="#">View my SSRFs</a></li>
+                                        <li><a href="#">Create Task list</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">SSRF User Guide</a></li>
+                                <li><a href="#">Service Mgmt</a></li>
+                                <li><a href="#">Supplier Mgmt</a></li>
+                                <li><a href="#">Training Mgmt</a></li>
+                                <li><a href="#">Administration</a></li>
+                                <li><a href="#">SMO Supplier Portal</a></li>
+                                <li><a href="#">Supplier Training</a></li>
+                            </ul>
+
+
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+
+
+                <div class="col-sm-3 col-md-2" style="padding-left:0px">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel ">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        SSRF
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body sub_menu">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <a href="#">Create SSRF</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">View my Tasks</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">VIew my SSRFs</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">General Tasks List</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel ">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        SSRF User Guide
+                                    </a>
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div class="panel ">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        Service Mgmt
+                                    </a>
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div class="panel ">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        Supplier Mgmt
+                                    </a>
+                                </h4>
+                            </div>
+
+                        </div>
+
+                        <div class="panel">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        Training Mgmt
+                                    </a>
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div class="panel">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        Administration
+                                    </a>
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div class="panel ">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        SMO Supplier Portal
+                                    </a>
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div class="panel ">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        Supplier Training
+                                    </a>
+                                </h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-10">
+                    <div class="row  welcome_user_search_bar">
+                        <div class="col-sm-8 col-xs-12 welcome_text">{!$user.FirstName}, Welcome to Supplier Management Organization (SMO)<br/></div>
+                        <div class="col-sm-3 col-xs-12 ">
+
+                            <!--<div class="input-group search_panel">
+                                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"></input>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default search_icon" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                    <div class="row page_path">
+                        <apex:commandLink action="{!redirect_HOME}"><span class="glyphicon glyphicon-home">  </span></apex:commandLink><span class="label_text">   >> Create New SSRF</span>
+                    </div>
+                    <div class="row form_panel">
+                        <div class="row request_row">
+                            <div class="col-md-5 col-xs-6 text_box_bg ">
+                                <span class="lb_text_style">New Request</span>
+                            </div>
+                            <span class="skew_box"></span>
+                            <div class="col-md-4 col-xs-1"></div>
+                            <div class="col-md-3 col-xs-4 pull-right"><a class="guide_link bold_Underline" href="#">SSRF USer Guide</a></div>
+                        </div>
+                        <div class="info_form">
+                            <div class="">
+                                <div class="information_title col-md-11 col-xs-11"><span>Your Information</span></div>
+                                <span class="skew_box_white"></span>
+                            </div>
+                            <div class=" newUser_details">
+                                <table class="table">
+                                    <tr><td class="left_col">SSRF ID</td><td class="right_col"></td></tr>
+                                    <tr><td class="left_col">Date Submitted</td><td class="right_col">{!currentDate}</td></tr>
+                                    <tr><td class="left_col">Full Name</td><td class="right_col">{!loggedInUser.firstName} {!loggedInUser.lastName}</td></tr>
+                                    <tr><td class="left_col">Lilly ID</td><td class="right_col">{!loggedInUser.FederationIdentifier}</td></tr>
+                                    <tr><td class="left_col">Phone</td><td class="right_col"> {!loggedInUser.Phone}</td></tr>
+                                    <tr>
+                                        <td class="left_col">Business Area</td>
+                                        <td class="right_col">
+                                            <apex:selectList multiselect="false" size="1" value="{!selectedArea}" style="height: 39px;width: 80%;">
+                                                <apex:selectOptions value="{!BusinessArea}" />
+                                            </apex:selectList>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="btns">
+                                <center>
+                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Salesselect">Search by Supplier</button>
+                                    <button type="button" class="btn btn-primary btn_srch2">Search By Services</button>
+                                </center>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade selectservices" id="Salesselect" role="dialog">
+                            <div class="modal-dialog ">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Seacrh By Suppliers</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4 class="Arrow-headings"> <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Select Suppliers</h4>
+
+                                        <!-- Dropdown and search boxes -->
+                                        <div class="row marginTop1">
+                                            <div class="dropdown col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                                <apex:actionFunction name="supplierInforamtion" action="{!supplierInfo}" reRender="supp,panel2,itext" status="actStatusId5" />
+                                                <apex:selectList id="slist" onchange="supplierInforamtion();" multiselect="false" size="1" value="{!selectedSupplier}" style="height: 39px;width: 80%;color:#186964" >
+
+                                                    <apex:selectOptions value="{!supplierOptions}" />
+                                                </apex:selectList>
+                                                <apex:actionStatus id="actStatusId5">
+                                                    <apex:facet name="start">
+                                                        <img src="/img/loading.gif" />
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </div>
+                                            <div class="input-group add-on col-xs-6 col-sm-6 col-lg-offset-4 col-md-4 col-lg-4">
+
+                                                <apex:inputText id="itext" value="{!searchStr}" styleClass="form-control" html-placeholder="Search Text Here" style="width: 215px;height: 40px;" />
+                                                <!-- <div class="input-group-btn">-->
+                                                
+                                                <apex:commandButton styleClass="btn btn-outline-primary" style="height:26px;" value="Search" action="{!search}" reRender="supp,panel2,panel3,slist" status="actStatusId6">
+                                                </apex:commandButton>
+                                                <!--</div>-->
+                                                <apex:actionStatus id="actStatusId6">
+                                                    <apex:facet name="start">
+                                                        <img src="/img/loading.gif" />
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </div>
+                                        </div>
+                                        <!--End Dropdown and search boxes -->
+                                        <!-- Table section1 -->
+
+
+                                        <apex:outputPanel id="supp">
+                                            <apex:outputPanel rendered="{!supplierInfo!=null || supplierinfo1!=null}">
+                                                <h4 class="Arrow-headings marginTop2"> <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Please Select all that apply</h4>
+                                                <div class="sales-title row">
+                                                    <div class="row">
+                                                        <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">Select</div>
+                                                        <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service</div>
+                                                        <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                                                        <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+                                                    </div>
+                                                </div>
+
+
+                                                <apex:repeat value="{!supplierInfo_wrapper}" var="sService">
+                                                    <div class="Table-Content">
+                                                        <!-- ROW1-->
+
+                                                        <div class="row sales-element">
+                                                            <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                                                                <apex:selectRadio value="{!SelectedSupplierByRadio}">
+                                                                    <apex:selectOptions value="{!supplierOptions1}" />
+                                                                    <apex:actionSupport event="onchange" action="{!servicesProvidedBySupplier}" rerender="panel2" status="actSt" />
+                                                                </apex:selectRadio>
+                                                            </div>
+                                                            <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Name}"></apex:outputLabel> </div>
+                                                            <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Supplier_Name__c}"></apex:outputLabel></div>
+                                                            <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Supplier_Type__r.name}"></apex:outputLabel></div>
+                                                        </div>
+                                                    </div>
+
+                                                </apex:repeat>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+
+                                        <!-- Endd Table section1 -->
+                                        <!-- Table section2 -->
+
+                                        <apex:outputPanel id="panel2">
+                                            <apex:outputPanel rendered="{!supplier_serviceWrapper!=null}">
+                                                <h4 class="Arrow-headings marginTop2"> <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Please Select all that apply</h4>
+                                                <div class="sales-title row">
+                                                    <div class="row">
+                                                        <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">Select</div>
+                                                        <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service</div>
+                                                        <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                                                        <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+                                                    </div>
+                                                </div>
+
+                                                <apex:repeat id="Idrep10" value="{!supplier_serviceWrapper}" var="sServ">
+                                                    <div class="Table-Content">
+                                                        <!-- ROW1-->
+                                                        <div class="row sales-element">
+                                                            <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                                                                <label class="form-check-label">
+                                                                    <apex:inputCheckbox value="{!sServ.selected}">
+                                                                        <apex:actionSupport event="onclick" action="{!selectedServices}" reRender="panel3,doneButton" status="actSt">
+                                                                            <apex:param id="parm1" name="parm1" value="{!sServ.index}" />
+                                                                        </apex:actionSupport>
+                                                                    </apex:inputCheckbox>
+                                                                </label>
+                                                            </div>
+                                                            <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2"><apex:outputLabel style="font-weight:100;" value="{!sServ.con.Name}"></apex:outputLabel></div>
+                                                            <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!sServ.con.Service_Name__r.Name}"></apex:outputLabel></div>
+                                                            <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!sServ.con.Supplier_Name__r.Name}"></apex:outputLabel></div>
+                                                        </div>
+
+                                                    </div>
+                                                </apex:repeat>
+
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        <!--</apex:outputPanel>  -->
+                                        <!-- Endd Table section2 -->
+                                        <!-- Table section3 -->
+
+                                        <apex:outputPanel id="panel3">
+                                            <apex:outputPanel id="panel3child" rendered="{!isdoneButtonVisible}">  <!-- !supplier_serviceWrapper!=null -->
+                                                <h4 class="Arrow-headings marginTop2"> <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Selected Services</h4>
+                                                <!--<script>alert("{!objSelectedServiceId}");</script>-->
+                                                <div class="sales-title row">
+                                                    <div class="row">
+                                                        <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">Select</div>
+                                                        <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service</div>
+                                                        <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                                                        <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+                                                    </div>
+                                                </div>
+
+                                                <!--<apex:variable var="cnt" value="{!0}" /> -->
+                                                <apex:repeat value="{!supplier_serviceWrapper}" var="sfinal">
+                                                    <apex:outputPanel rendered="{!sfinal.selected}">
+                                                        <div class="Table-Content">
+                                                            <!-- ROW1-->
+                                                            <div class="row sales-element" rendered="{!sfinal.selected}">
+                                                                <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                                                                    <label class="form-check-label">
+                                                                        <apex:commandLink style="text-decoration: none; color:#69c;" action="{!removeService}" status="actSt" reRender="panel2,panel3,panel3child">
+                                                                            Remove
+                                                                            <apex:param value="{!sfinal.index}" name="Index" />
+                                                                        </apex:commandLink>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                                                                <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                                                                <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <apex:variable var="cnt" value="{!cnt+1}" />-->
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        <br/>
+                                        
+                                        <apex:outputPanel id="doneButton">
+                                            <apex:commandButton styleClass="btn btn-outline-primary" disabled="{!!isdoneButtonVisible}" style="height:26px;" value="Done" action="{!done}" oncomplete="closeModal();" reRender="finalServices,finalSuppliers"/>
+                                        </apex:outputPanel>
+                                        <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Salesselect">Search by Supplier</button>-->
+                                        <!-- Endd Table section3 -->
+                                        <!--  </form>
+                                     <div class="modal-footer">
+                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                     </div> -->
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    <!--MODEL ends-->
+                        <div class="row info_form">
+                          <div class="information_title col-md-11 col-xs-11" style="left: 14px;top: -10px;"><span>Selected Services</span></div>
+                            
+                           <!-- <a href="#demo1" class="btn btn-info col-md-11 col-xs-11" data-toggle="collapse" style="left: 12px;">Selected Services</a>-->
+                            <span class="skew_box_white"  style="width: 10%;height: 39px;margin-top: -10px;"></span>
+                            <!--<div id="demo1" class="collapse">-->
+                                <apex:outputPanel id="finalServices" >
+                                    <apex:outputPanel rendered="{!isServicesVisible}">
+                                    <div class="sales-title row" style="font-size: inherit;color:black;width: 97%;margin-left: 15px;">
+                                        <div class="row">
+                                            <div class="border col-xs-3 col-sm-3 col-md-2 col-sm-2">Service</div>
+                                            <div class="border col-xs-3 col-sm-3 col-md-3 col-sm-3">Description</div>
+                                            <div class="border col-xs-4 col-sm-4 col-md-4 col-sm-4">Detailed Service description</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <apex:repeat value="{!supplier_serviceWrapper}" var="sfinal">
+                                        <apex:outputPanel rendered="{!sfinal.selected}">
+                                            <div class="Table-Content">
+                                                <div class="row sales-element" style="color:black;width: 97%;margin-left: 15px;" rendered="{!sfinal.selected}">
+                                                    <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                                                    <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                                                    <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!sfinal.con.Name}"></apex:outputLabel></div>
+                                                </div>
+                                    
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:repeat>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            <!--</div>-->
+                        </div>
+
+                        <!--<div class="row info_form">
+                            <a href="#demo2" class="btn btn-info col-md-11 col-xs-11" data-toggle="collapse" style="left: 12px;">New Services</a>
+                            <span class="skew_box_white"  style="width: 9%;height: 25px;"></span>
+                            <div id="demo2" class="collapse">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>-->
+
+                        <div class="row info_form">
+                            <div class="information_title col-md-11 col-xs-11" style="left: 14px;top: -10px;"><span>Selected Supplier</span></div>
+                            <!--<a href="#demo31" class="btn btn-info col-md-11 col-xs-11" data-toggle="collapse" style="left: 12px;">Selected Supplier</a>-->
+                            <span class="skew_box_white"  style="width: 10%;height: 40px;margin-top: -10px;"></span>
+                            <!--<div id="demo31" class="collapse">-->
+                                <apex:outputPanel id="finalSuppliers">
+                                    <apex:outputPanel rendered="{!isServicesVisible}">
+                                    <div class="sales-title row"  style="font-size: inherit;color:black;width: 97%;margin-left: 15px;">
+                                        <div class="row">
+                                            <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service</div>
+                                            <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                                            <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+                                        </div>
+                                    </div>
+                                    <apex:repeat value="{!supplierInfo_wrapper}" var="sService">
+                                        <div class="Table-Content">
+                                            <div class="row sales-element"  style="color:black;width: 97%;margin-left: 15px;">
+                                                <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Name}"></apex:outputLabel> </div>
+                                                <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Supplier_Name__c}"></apex:outputLabel></div>
+                                                <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!sService.con.Supplier_Type__r.name}"></apex:outputLabel></div>
+                                            </div>
+                                        </div>
+                                    </apex:repeat>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            <!--</div>-->
+                        </div>
+                       <!-- <div class="row info_form">
+                            <a href="#demo4" class="btn btn-info col-md-11 col-xs-11" data-toggle="collapse" style="left: 12px;">New Supplier</a>
+                            <span class="skew_box_white"  style="width: 9%;height: 25px;"></span>
+                            <div id="demo4" class="collapse">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>-->
+
+                        <div class="row info_form">
+                            <div class="row other_info_margin">
+                             <div class="information_title col-md-11 col-xs-11" style="left: 28px;top: -10px;"><span>Other information</span></div>
+                                <!--<a class="btn btn-info col-md-11 col-xs-11" style="left: 28px;">Other information</a>-->
+                                <span class="skew_box_white"  style="width: 10%;height: 40px;margin-top: -10px;"></span>
+                            </div>
+                            <div class="other_info_content">
+                                <div class="content_line">
+
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="red_asterick">*</span>
+                                    <span>Estimated combined spend for all services selected: </span>
+                                </div>
+                                <!--<div class="row radio_btns">-->
+
+                                    <!--<label class="col-xs-12 col-md-3 radio-inline rdn_btns"><input type="radio" name="optradio"></input> $0 - $24,999</label>
+
+
+                                    <label class="col-xs-12 col-md-3  radio-inline  rdn_btns"><input type="radio" name="optradio"></input>$25,000 - $499,999</label>
+
+
+                                    <label class="col-xs-12 col-md-3 radio-inline  rdn_btns"><input type="radio" name="optradio"></input>> $499,999</label>-->
+                                    
+                                    <apex:selectRadio value="{!selectedSpend}">
+                                        <apex:selectOptions value="{!EstimatedSpend}" /> 
+                                    </apex:selectRadio>
+
+                                <!--</div>--><br/>
+
+                                <div class="content_line">
+
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="red_asterick">*</span>
+                                    <span>Attachments (e.g. proposals) are recommended for New Service or New Supplier Requests</span>
+                                </div>
+                                <!--<div class="row txtbx_btns">
+                                    <input type="text" class="col-xs-3 " id="usr"></input>
+                                    <span class="col-xs-1"></span>
+                                    <button type="button" class="col-sm-1 col-xs-3 btn browse_btn ">
+                                        Browse..
+                                    </button>
+                                    <span class="col-xs-1"></span>
+                                    <button type="button" class="col-sm-1 col-xs-3  btn upload_btn">Upload</button>
+                                </div>-->
+                                <!--<apex:actionRegion >
+                                    <apex:outputLabel value="File" for="file"/>
+                                    <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file"/>
+                                </apex:actionRegion> -->
+                            </div>
+                        </div>
+                        <center>
+                            <!--<div class="btn btn-primary btn_sbmt">Submit</div>-->
+                            <apex:commandButton value="Submit" action="{!submitSSRF}"/>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <!--Left navbar-->
+
+
+            <footer class="row footer_bg">
+                <div class="footer_cnt">
+                    <span class="copyright_info">
+                        Copyright @ 2017 Eli Lilly &amp; Company. All rights reserved
+                    </span>
+
+                    <ul class="footer_links">
+                        <li><a>Privacy</a></li>
+                        <li><a>Terms of use</a></li>
+                        <li><a>Copyright</a></li>
+                        <li><a>Contact us</a></li>
+
+                    </ul>
+
+                </div>
+            </footer>
+        </apex:form>
+    </body>
+
+    <!-- End Default Content REMOVE THIS -->
+</apex:page>

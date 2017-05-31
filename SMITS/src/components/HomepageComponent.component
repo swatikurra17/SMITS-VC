@@ -1,0 +1,179 @@
+<apex:component controller="ssrfController">
+    <nav class="navbar navbar-default mobile_menu">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed color_menu" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SSRF <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><apex:commandLink value="Create SSRF" action="{!redirect_SSRF}"/></li>
+                                <li><a href="#">View my task</a></li>
+                                <li><a href="#">View my SSRFs</a></li>
+                                <li><a href="#">Create Task list</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">SSRF User Guide</a></li>
+                        <li><a href="#">Service Mgmt</a></li>
+                        <li><a href="#">Supplier Mgmt</a></li>
+                        <li><a href="#">Training Mgmt</a></li>
+                        <li><a href="#">Administration</a></li>
+                        <li><a href="#">SMO Supplier Portal</a></li>
+                        <li><a href="#">Supplier Training</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </nav>
+
+
+            <div class="col-sm-3 col-md-2" style="padding-left:0px">
+                <div class="panel-group" id="accordion">
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    SSRF
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body sub_menu" style="padding-bottom: 0px;margin-bottom: -20px;margin-top: -13px;">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                        <a href="#"><apex:commandLink value="Create SSRF" action="{!redirect_SSRF}"/></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                           <a href="#">View my Tasks</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#">VIew my SSRFs</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                         <a href="#">General Tasks List</a>
+                                                                                  </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    SSRF User Guide
+                                </a>
+                            </h4>
+                        </div>
+                       
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav"  data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    Service Mgmt
+                                </a>
+                            </h4>
+                        </div>
+                 
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    Supplier Mgmt
+                                </a>
+                            </h4>
+                        </div>
+                
+                    </div>
+
+                    <div class="panel">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    Training Mgmt
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                    <div class="panel">
+                        <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        Administration
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse">
+                                <div class="panel-body sub_menu" style="padding-bottom: 0px;margin-bottom: -20px;margin-top: -13px;">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <a href="#">Supplier Type</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">Service Type</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel ">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        SMO Supplier Portal
+                                    </a>
+                                </h4>
+                            </div>
+
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    SMO Supplier Portal
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    Supplier Training
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                </div>
+
+         
+            </div>
+</apex:component>

@@ -1,0 +1,16 @@
+{
+    "projectName": "SMITS",
+    "username": "swatikurra@test.com",
+    "id": "505b6a70-45cd-11e7-8ae4-1fd071f875f0",
+    "namespace": "",
+    "environment": "production",
+    "loginUrl": "https://login.salesforce.com/",
+    "workspace": "C:\\mavenmate",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}

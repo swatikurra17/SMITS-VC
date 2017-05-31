@@ -1,0 +1,16 @@
+<apex:component >
+<footer class="row footer_bg">
+        <div class="footer_cnt">
+            <span class="copyright_info">
+                Copyright @ 2017 Eli Lilly and  Company. All rights reserved
+            </span>
+            
+                <ul class="footer_links">
+                    <li><a>Privacy</a></li>
+                    <li><a>Terms of use</a></li>
+                    <li><a>Copyright</a></li>
+                    <li><a>Contact us</a></li>
+                </ul>
+        </div>
+    </footer>
+</apex:component>

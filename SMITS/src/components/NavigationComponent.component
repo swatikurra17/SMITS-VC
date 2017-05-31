@@ -1,0 +1,18 @@
+<apex:component >
+  <nav class="navbar navbar-default header_color">
+                <div class="container-fluid">
+                    <div class="row header_lilly">
+                        <div class="col-xs-3 col-sm-3">
+                            <a class="header-logo" href="#">
+                                <a href="/apex/homepage"><apex:image url="{!URLFOR($Resource.HOMEpage, 'SMITs/images/lillylogo.png')}" /></a>
+                            </a>
+                        </div>
+                        <div class="col-xs-9 col-sm-9">
+                            <span class="header_text">Supplier Management Integrated Tracking System</span>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+</apex:component>

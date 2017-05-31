@@ -1,0 +1,320 @@
+<apex:page controller="ssrfController" showheader="false" sidebar="false">
+  <!-- Begin Default Content REMOVE THIS -->
+    <head>
+      <title>Home</title>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link rel="Stylesheet" href="CustomStyleSheet.css" ></link>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.HOMEpage,'SMITs/CustomStyleSheet.css')}"/>
+   <script>
+   function redirect(){
+      buttonVisibility();
+    }
+   </script>
+    </head>
+
+<body>
+<apex:form >
+    <apex:actionFunction name="buttonVisibility" action="{!buttonVisibility}" reRender="idUploadButton"/>
+    <!--Top Lilly header
+    <nav class="navbar navbar-default header_color">
+        <div class="container-fluid">
+            <div class="row header_lilly">
+                <div class="col-xs-3 col-sm-3">
+                    <a class="header-logo" href="#">
+                    <apex:image url="{!URLFOR($Resource.HOMEpage, 'SMITs/images/lillylogo.png')}"/>
+                    </a>
+                </div>
+                <div class="col-xs-9 col-sm-9">
+                    <span class="header_text">Supplier Management Integrated Tracking System</span>
+                   
+                </div>
+               
+                
+                   
+             
+            </div>
+        </div>
+    </nav>-->
+    <c:NavigationComponent />
+
+    <div class="container-fluid wrapper">
+        <!--Burger Menu for Mobile-->
+        <!--<nav class="navbar navbar-default mobile_menu">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed color_menu" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SSRF <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><apex:commandLink value="Create SSRF" action="{!redirect_SSRF}"/></li>
+                                <li><a href="#">View my task</a></li>
+                                <li><a href="#">View my SSRFs</a></li>
+                                <li><a href="#">Create Task list</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">SSRF User Guide</a></li>
+                        <li><a href="#">Service Mgmt</a></li>
+                        <li><a href="#">Supplier Mgmt</a></li>
+                        <li><a href="#">Training Mgmt</a></li>
+                        <li><a href="#">Administration</a></li>
+                        <li><a href="#">SMO Supplier Portal</a></li>
+                        <li><a href="#">Supplier Training</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </nav>
+
+
+            <div class="col-sm-3 col-md-2" style="padding-left:0px">
+                <div class="panel-group" id="accordion">
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    SSRF
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body sub_menu" style="padding-bottom: 0px;margin-bottom: -20px;margin-top: -13px;">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                        <a href="#"><apex:commandLink value="Create SSRF" action="{!redirect_SSRF}"/></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                           <a href="#">View my Tasks</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#">VIew my SSRFs</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                         <a href="#">General Tasks List</a>
+                                                                                  </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    SSRF User Guide
+                                </a>
+                            </h4>
+                        </div>
+                       
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav"  data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    Service Mgmt
+                                </a>
+                            </h4>
+                        </div>
+                 
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    Supplier Mgmt
+                                </a>
+                            </h4>
+                        </div>
+                
+                    </div>
+
+                    <div class="panel">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    Training Mgmt
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                    <div class="panel">
+                        <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        Administration
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse">
+                                <div class="panel-body sub_menu">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <a href="#">Supplier Type</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">Service Type</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel ">
+                            <div class="">
+                                <h4 class="panel-title arrow_box box">
+                                    <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        SMO Supplier Portal
+                                    </a>
+                                </h4>
+                            </div>
+
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    SMO Supplier Portal
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                    <div class="panel ">
+                        <div class="">
+                            <h4 class="panel-title arrow_box box">
+                                <a class="text_nav" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    Supplier Training
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                </div>
+
+         
+            </div>-->
+            <c:HomepageComponent />
+      
+        
+        <div class="col-xs-12 col-md-10">
+            <div class="row  welcome_user_search_bar">
+                <div class="col-sm-8 col-xs-12 welcome_text" style="top: -5px;">{!$User.FirstName}, Welcome to Supplier Management Organization (SMO)</div>
+                <div class="col-sm-3 col-xs-12">
+
+                   <!-- <div class="input-group search_panel">
+                         <div class="input-group add-on col-xs-6 col-sm-6 col-lg-offset-4 col-md-4 col-lg-4">
+                              <table><tr><td><apex:inputText id="itext" value="{!searchStr}" styleClass="form-control"  html-placeholder="Search Text Here" style="width: 215px;height: 40px;"/></td>
+                         <!-- <div class="input-group-btn">-->
+                             <!-- <td> <apex:commandButton styleClass="btn btn-outline-primary" style="height:39px;" value="Search" action="{!search}" reRender="supp,panel2,panel3,slist" status="actStatusId6" >
+                               </apex:commandButton>
+                               </td>
+                          <!--</div>-->
+                             <!-- <td><apex:actionStatus id="actStatusId6">
+                                    <apex:facet name="start" >
+                                        <img src="/img/loading.gif"/>                    
+                                    </apex:facet>
+                              </apex:actionStatus>
+                              </td></tr></table>
+                          </div>
+                    </div>-->
+                </div>
+            </div>
+            <!--<img class="home_pg_img" src="../images/home_bg.png" />-->
+            <apex:image style="margin-left:-15px;width: 103%;" url="{!URLFOR($Resource.HOMEpage, 'SMITs/images/home_bg.png')}"/>
+            <div class="row content_div" style="width: 103%;">
+                <div class="welcome_text2">
+                    Welcome to the new Supplier Management Integrated Tracking System (SMITS)
+                </div>
+                <div class="welcome_content">
+                    <p>
+                        We hope that you find this new SSRF submission site to be user friendly and intuitive as you submit your SSRFs.
+                        Feel free to contact a member of Supplier managementteam if you have questions about how to use the new site or if you need clarifications on SMO processes.
+                        We also welcome any feedback about how to improve the site for future iterations.Thank You!
+                    </p>
+                    <p>
+                        <span class="bold_txt">IMPORTANT:</span>In order to receive notifications from system, you will need to make a slight change to your Outlook junk mail settings.
+                        Instructions on how to make the change can be found <span class="bold_Underline">here</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row intro_div">
+                <div class="inner_content">
+                    <div class="bold_txt">Introduction</div>
+                    <p>
+                        <span class="bold_txt">Please Note:</span>You must complete the <span class="bold_txt">'Requesting Services'</span> course ID <span class="bold_txt blue_txt">9124127</span> and <span class="bold_txt blue_txt">407415</span> before submitting the SSRF for the first time.
+                        You can search your training plan in <span class="bold_txt">Success factors</span> to locate the course or to verify that you have completed it.
+                    </p>
+                    <p>For help/assitance in submitting SSRF , please refer to SSRF user guide in the left hand margin of the site.</p>
+               
+                    <div class="btn_checkbox">
+                        <span class="blue_div">
+                            <label class="checkbox-inline">
+                                <!--<input type="checkbox" value="">I Certify that I have completed SuccessFactors</input>-->
+                                <apex:inputCheckbox onchange="redirect();" value="{!isNewSSRF}" /> I Certify that I have completed SuccessFactors
+                            </label>
+                        </span>
+                        <!--<button type="button" class="btn new_SSRF_btn upload_btn" onclick="redirect()">Create new SSRF</button>-->
+                        <apex:outputPanel id="idUploadButton">
+                            <apex:commandButton style="border-color: #4d4d4d !important;" disabled="{!!isNewSSRF}"  value="Create new SSRF" action="{!redirect_SSRF}"/>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       
+    </div>
+    <!--<footer class="row footer_bg">
+        <div class="footer_cnt">
+            <span class="copyright_info">
+                Copyright @ 2017 Eli Lilly and  Company. All rights reserved
+            </span>
+            
+                <ul class="footer_links">
+                    <li><a>Privacy</a></li>
+                    <li><a>Terms of use</a></li>
+                    <li><a>Copyright</a></li>
+                    <li><a>Contact us</a></li>
+                </ul>
+        </div>
+    </footer>-->
+    <c:FooterComponent />
+    
+    <!--Left navbar-->
+  </apex:form> 
+</body>
+  
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

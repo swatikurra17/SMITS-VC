@@ -1,0 +1,189 @@
+<apex:page controller="searchByService">
+
+
+    <html lang="en">
+    <head>
+        <title>SSRF Search Popup</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <apex:stylesheet value="{!URLFOR($Resource.popup,'CSS/popup.css')}" />
+
+
+    </head>
+    <body>
+        <apex:form >
+            <div class="container">
+                <p>SSRF Services Modal</p>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Salesselect">Modal button</button>
+
+                <!-- Modal -->
+                <div class="modal fade selectservices" id="Salesselect" role="dialog">
+                    <div class="modal-dialog ">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Seacrh By Services</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h4 class="Arrow-headings">
+                                    <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>
+                                    New Request - Select Services
+                                </h4>
+                                <!--For Radio buttons -->
+
+                                <div class="row">
+                                    <div class="form-check">
+                                        <label class="form-check-label col-xs-12 col-sm-6 col-md-3 col-lg-3 ">
+                                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"></input>
+                                            <span class="label-text">Search for existing services.</span>
+                                        </label>
+                                        <label class="form-check-label col-xs-12 col-sm-6 col-md-4 col-lg-4 right-label">
+                                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"></input>
+                                            <span class="label-text">Request new services</span>
+                                        </label>
+                                        <label class="form-check-label col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                        </label>
+                                    </div>
+                                </div>
+                                <!--End For Radio buttons -->
+                                <!-- Dropdown and search boxes -->
+                                <div class="row marginTop1">
+                                    <div class="dropdown col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                        <apex:selectList multiselect="false" size="1" value="{!selectedService}" style="height: 39px;width: 80%;">
+                                            <apex:actionSupport event="onchange" action="{!serviceInfo}" reRender="serv" status="serStatus" />
+                                            <apex:selectOptions value="{!listServices}" />
+                                        </apex:selectList>
+                                        <apex:actionStatus id="servStatus">
+                                            <apex:facet name="start">
+                                                <img src="/img/loading.gif" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                    <div class="input-group add-on col-xs-6 col-sm-6 col-lg-offset-4 col-md-4 col-lg-4">
+                                        <apex:inputText value="{!searchStr}" styleClass="form-control" html-placeholder="Search Text Here" style="width: 215px;height: 40px;" />
+                                        <!-- <div class="input-group-btn">-->
+                                        <apex:commandButton styleClass="btn btn-outline-primary" style="height:39px;" value="Search" action="{!searchService}" reRender="serv" status="searchStatus">
+                                        </apex:commandButton>
+                                        <apex:actionStatus id="searchStatus">
+                                            <apex:facet name="start">
+                                                <img src="/img/loading.gif" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                </div>
+                                <!--End Dropdown and search boxes -->
+                                <!-- Table section1 -->
+
+                                <h4 class="Arrow-headings marginTop2">
+                                    <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>Please select all that apply
+                                </h4>
+                                <apex:outputPanel id="serv">
+                                    <div class="sales-title row">
+                                        <div class="row">
+                                            <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">Select</div>
+                                            <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service Name</div>
+                                            <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                                            <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+                                        </div>
+                                    </div>
+                                    <apex:repeat value="{!servicelst}" var="iService">
+                                        <div class="Table-Content">
+                                            <!-- ROW1-->
+                                            <div class="row sales-element">
+                                                <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                                                    <label class="form-check-label">
+
+                                                        <apex:inputCheckbox value="{!isChecked}" id="fgjdfj">
+                                                            <apex:actionSupport event="onchange" action="{!addtoFinal}" reRender="finalservices">
+                                                                <apex:param value="{!iService.Id}" name="serviceId" />
+                                                                <apex:param value="{!isChecked}" name="checked" />
+                                                            </apex:actionSupport>
+                                                        </apex:inputCheckbox>
+
+
+                                                    </label>
+                                                </div>
+
+                                                <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!iService.Service_Type__r.Title__c}"></apex:outputLabel></div>
+                                                <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!iService.Description__c}"></apex:outputLabel></div>
+                                                <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!iService.Detailed_Description__c}"></apex:outputLabel></div>
+                                            </div>
+                                        </div>
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                                <!-- Endd Table section1 -->
+                                <!-- Table section2 -->
+
+                                <h4 class="Arrow-headings marginTop2">
+                                    <img class="right-arrow" src="{!URLFOR($Resource.popup,'images/right-arrow.jpg')}" alt=" right-arrow" align="left"></img>
+                                    Final Selected sservice(s)
+                                </h4>
+                                <apex:outputpanel id="finalservices">
+                                    <apex:variable var="cnt" value="{!0}" />
+                                    <div class="sales-title row">
+                                        <div class="row">
+                                            <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">Remove</div>
+                                            <div class="border col-xs-3 col-sm-3 col-md-2 col-lg-2">Service</div>
+                                            <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3">Description</div>
+                                            <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4">Detailed Service description</div>
+
+                                        </div>
+                                    </div>
+                                    <apex:repeat value="{!finalServicelst}" var="iFinalService">
+                                        <apex:variable var="cnt" value="{!cnt+1}" />
+                                        <div class="Table-Content">
+                                            <!-- ROW1-->
+
+                                            <div class="row sales-element">
+                                                <div class="border col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                                                    <label class="form-check-label">
+                                                        <apex:commandLink style="text-decoration: none; color:#69c;" action="{!removeService}" status="statusProcessing" reRender="finalservices">
+                                                            Remove
+                                                            <apex:param value="{!cnt}" name="Index" />
+                                                        </apex:commandLink>
+                                                    </label>
+                                                </div>
+                                                <div class="border col-xs-3 col-sm-3 col-md-3 col-lg-3"><apex:outputLabel style="font-weight:100;" value="{!iFinalService.Service_Type__r.Title__c}"></apex:outputLabel></div>
+                                                <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!iFinalService.Description__c}"></apex:outputLabel></div>
+                                                <div class="border col-xs-4 col-sm-4 col-md-4 col-lg-4"><apex:outputLabel style="font-weight:100;" value="{!iFinalService.Detailed_Description__c}"></apex:outputLabel></div>
+                                            </div>
+
+
+                                        </div>
+                                    </apex:repeat>
+                                </apex:outputpanel>
+                                <!-- Endd Table section2 -->
+                                <div class="row marginTop1">
+                                    <div class="dropdown col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                        <apex:selectList multiselect="false" size="1" value="{!selecteditem}" style="height: 39px;width: 80%;">
+                                           <!-- <apex:actionSupport event="onchange" action="{!supplierInfo}" reRender="supp" status="actStatusId5" />-->
+                                            <apex:selectOptions value="{!items}"></apex:selectOptions>
+                                            
+                                            
+                                        </apex:selectList>
+                                        <apex:actionStatus id="actStatusId5">
+                                            <apex:facet name="start">
+                                                <img src="/img/loading.gif" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </apex:form>
+    </body>
+</html>
+
+</apex:page>
